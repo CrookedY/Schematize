@@ -87,6 +87,10 @@ class PangenomeSchematic extends React.Component {
 		this.processArray();
 	}
 	loadFasta(){
+		const chunkNo = parseInt(this.props.store.startChunkURL.split('_')[0].split('k')[0])
+		const fastaFileName = `${process.env.PUBLIC_URL}test_data/${this.props.store.jsonName}/seq_Chunk0${chunkNo}_bin100.fa`
+		//What kind of request am I doing?
+
 		//work out which fasta. Get Json chuck and find chunk number (split on _, take [0], split on k take [0] find file with name with filter(?), parse int for matching)
 		//fetch fa (either promises or xhr but need to decide). Needs to be response.text. check bins match json bins. Load rest of text 
 		//split on first line and turn rest of file into array
