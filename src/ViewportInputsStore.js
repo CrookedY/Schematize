@@ -19,9 +19,9 @@ RootStore = types
         highlightedLink: 0, // we will compare linkColumns
         maximumHeightThisFrame: 150,
         cellToolTipContent: "",
-        jsonName: 'run1.B1phi1.i1.seqwish.w100',
-        startChunkURL: 'test_data/run1.B1phi1.i1.seqwish.w100/chunk0_bin100.schematic.json',
-        endChunkURL: 'test_data/run1.B1phi1.i1.seqwish.w100/chunk1_bin100.schematic.json',
+        jsonName: 'run1.B1phi1.i1.seqwish.w1',
+        startChunkURL: 'test_data/run1.B1phi1.i1.seqwish.w1/chunk00_bin1.schematic.json',
+        endChunkURL: 'test_data/run1.B1phi1.i1.seqwish.w1/chunk01_bin1.schematic.json',
         pathNucPos: types.optional(PathNucPos, {path: "path", nucPos: 0}), // OR: types.maybe(PathNucPos)
         pathIndexServerAddress: 'http://193.196.29.24:3010/',
         binWidth: 100
