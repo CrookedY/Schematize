@@ -142,12 +142,19 @@ class ComponentRect extends React.Component {
             <>
                 <Rect
                     x={this.props.item.x}
-                    y={this.props.store.topOffset}
+                    y={this.props.store.topOffset+10}
                     width={this.props.width * this.props.store.pixelsPerColumn}
                     height={this.props.height * this.props.store.pixelsPerRow} //TODO: change to compressed height
                     fill={this.state.color}
                     onClick={this.handleClick}>
-                </Rect>
+            </Rect>
+            <Text
+          x={this.props.item.x}
+          y={this.props.store.topOffset}
+          text="ACCGGTTAACTT"
+          width={this.props.width * this.props.store.pixelsPerColumn}
+          height={this.props.height || 1}
+            />
                 {this.renderMatrix()}
                 {this.renderAllConnectors()}
             </>
