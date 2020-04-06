@@ -10,6 +10,7 @@ class PangenomeSchematic extends React.Component {
 		super(props);
 		this.pathNames = [];
 		this.components = [];
+		this.loadFasta()
 		this.loadIndexFile(this.props.store.jsonName); //initializes this.chunk_index
 		this.blockingJsonFetch(this.props.store.startChunkURL, this.loadFirstJSON.bind(this));
 		//whenever jsonName changes,
@@ -87,14 +88,29 @@ class PangenomeSchematic extends React.Component {
 		this.processArray();
 	}
 	loadFasta(){
-		const chunkNo = parseInt(this.props.store.startChunkURL.split('_')[0].split('k')[0])
-		const fastaFileName = `${process.env.PUBLIC_URL}test_data/${this.props.store.jsonName}/seq_Chunk0${chunkNo}_bin100.fa`
+		console.log(this.props.store.startChunkURL, 'chunk1')
+		console.log(this.props.store.startChunkURL.split('chunk')[1].split('_')[0])
+		const chunkNo = parseInt(this.props.store.startChunkURL.split('chunk')[1].split('_')[0])
+		const fastaFileName = `${process.env.PUBLIC_URL}/test_data/${this.props.store.jsonName}/seq_Chunk0${chunkNo}_bin100.fa`
 		//What kind of request am I doing?
+
+		//test_data/run1.B1phi1.i1.seqwish.w100/seq_Chunk00_bin100.fa
+		console.log(fastaFileName)
+
+		fetch(fastaFileName)
+		.then((response)=>{
+			console.log(response)
+			return response.text()
+		})
+		.then((text)=>{
+			console.log(text)
+
+		})
 
 		//work out which fasta. Get Json chuck and find chunk number (split on _, take [0], split on k take [0] find file with name with filter(?), parse int for matching)
 		//fetch fa (either promises or xhr but need to decide). Needs to be response.text. check bins match json bins. Load rest of text 
 		//split on first line and turn rest of file into array
-		//in process array create bin nucleotide. Display nucleotide below arrows?
+		//in process array create bin nucleotide. Display nucleotide below arrows
 		//arrows will need raiding by height of text (probably)
 		//render text last so it appears on top of arrows and can be seen (might have to change arrow colours)
 	}
