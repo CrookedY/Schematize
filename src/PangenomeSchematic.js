@@ -89,11 +89,11 @@ class PangenomeSchematic extends React.Component {
 	}
 	loadFasta(){
 		const chunkNo = parseInt(this.props.store.startChunkURL.split('chunk')[1].split('_')[0])
-		const fastaFileName = `${process.env.PUBLIC_URL}/test_data/${this.props.store.jsonName}/seq_Chunk0${chunkNo}_bin100.fa`
+		console.log(chunkNo)
+		const fastaFileName = `${process.env.PUBLIC_URL}/test_data/${this.props.store.jsonName}/seq_chunk0${chunkNo}_bin1.fa`
 		//What kind of request am I doing?
 		fetch(fastaFileName)
 		.then((response)=>{
-			console.log(response)
 			return response.text()
 		})
 		.then((text)=>{
@@ -103,6 +103,7 @@ class PangenomeSchematic extends React.Component {
 			const splitText = text.replace(/.*/, "").substr(1)
 			//split into array of nucelotides
 			const nucleotides = splitText.split("")
+			console.log(nucleotides)
 			return nucleotides
 		})
 		//work out which fasta. Get Json chuck and find chunk number (split on _, take [0], split on k take [0] find file with name with filter(?), parse int for matching)
