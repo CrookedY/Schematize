@@ -148,12 +148,6 @@ class ComponentRect extends React.Component {
                     fill={this.state.color}
                     onClick={this.handleClick}>
                 </Rect>
-               <Text x={this.props.item.x}
-                    y={this.props.store.topOffset}
-                    text="A"
-                    width={this.props.width * this.props.store.pixelsPerColumn}
-                    height={this.props.height || 1}
-            />
                 {this.renderMatrix()}
                 {this.renderAllConnectors()}
             </>

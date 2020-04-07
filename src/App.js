@@ -279,10 +279,10 @@ class App extends Component {
                                 return(                            
                                 <Text 
                                     text={letter}
-                                    x={x*this.props.store.pixelsPerColumn}
+                                    x={(x-1)*this.props.store.pixelsPerColumn}
                                     y={95}
-                                    width={30}
-                                    height={30}/>)
+                                    width={this.props.store.pixelsPerColumn}
+                                    height={this.props.store.pixelsPerColumn}/>)
 
                             })}
                         </Layer>

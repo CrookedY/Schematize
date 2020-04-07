@@ -90,6 +90,7 @@ class PangenomeSchematic extends React.Component {
 	}
 	loadFasta(){
 		//find a way to make this less fragile
+		//probably move it elsewhere
 		const chunkNo = parseInt(this.props.store.startChunkURL.split('chunk')[1].split('_')[0])
 		const fastaFileName = `${process.env.PUBLIC_URL}/test_data/${this.props.store.jsonName}/seq_chunk0${chunkNo}_bin1.fa`
 		fetch(fastaFileName)
@@ -103,10 +104,11 @@ class PangenomeSchematic extends React.Component {
 			const splitText = text.replace(/.*/, "").substr(1)
 			//split into array of nucelotides
 			const nucleotides = splitText.split("")
+			const sanitisedNucleotides = nucleotides.filter(t=>t!=='\n')
 			const startBin=this.props.store.getBeginBin()
 			const endBin=this.props.store.getEndBin()
 			const currentNucleos = nucleotides.slice(startBin-1, endBin)
-			this.nucleotides= currentNucleos
+			this.nucleotides= sanitisedNucleotides
 			console.log(this.nucleotides)
 			return true
 		})
