@@ -10,6 +10,7 @@ class PangenomeSchematic extends React.Component {
 		super(props);
 		this.pathNames = [];
 		this.components = [];
+		this.nucleotides = [];
 		this.loadFasta()
 		this.loadIndexFile(this.props.store.jsonName); //initializes this.chunk_index
 		this.blockingJsonFetch(this.props.store.startChunkURL, this.loadFirstJSON.bind(this));
@@ -88,10 +89,9 @@ class PangenomeSchematic extends React.Component {
 		this.processArray();
 	}
 	loadFasta(){
+		//find a way to make this less fragile
 		const chunkNo = parseInt(this.props.store.startChunkURL.split('chunk')[1].split('_')[0])
-		console.log(chunkNo)
 		const fastaFileName = `${process.env.PUBLIC_URL}/test_data/${this.props.store.jsonName}/seq_chunk0${chunkNo}_bin1.fa`
-		//What kind of request am I doing?
 		fetch(fastaFileName)
 		.then((response)=>{
 			return response.text()
@@ -103,8 +103,12 @@ class PangenomeSchematic extends React.Component {
 			const splitText = text.replace(/.*/, "").substr(1)
 			//split into array of nucelotides
 			const nucleotides = splitText.split("")
-			console.log(nucleotides)
-			return nucleotides
+			const startBin=this.props.store.getBeginBin()
+			const endBin=this.props.store.getEndBin()
+			const currentNucleos = nucleotides.slice(startBin-1, endBin)
+			this.nucleotides= currentNucleos
+			console.log(this.nucleotides)
+			return true
 		})
 		//work out which fasta. Get Json chuck and find chunk number (split on _, take [0], split on k take [0] find file with name with filter(?), parse int for matching)
 		//fetch fa (either promises or xhr but need to decide). Needs to be response.text. check bins match json bins. Load rest of text 

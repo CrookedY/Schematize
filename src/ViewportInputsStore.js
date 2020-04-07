@@ -18,6 +18,7 @@ RootStore = types
         topOffset: 400,
         highlightedLink: 0, // we will compare linkColumns
         maximumHeightThisFrame: 150,
+        // nucleotidePositions:[],
         cellToolTipContent: "",
         jsonName: 'run1.B1phi1.i1.seqwish.w1',
         startChunkURL: 'test_data/run1.B1phi1.i1.seqwish.w1/chunk00_bin1.schematic.json',
@@ -112,6 +113,9 @@ RootStore = types
         function setBinWidth(binWidth) {
             self.binWidth = binWidth;
         }
+        // function setNucleotidePositions(positions) {
+        //     self.nucleotidePositions = positions;
+        // }
         return {
             updateBeginEndBin,
             updateTopOffset,

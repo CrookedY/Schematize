@@ -10,7 +10,7 @@ import {calculateLinkCoordinates} from "./LinkRecord";
 import NucleotideTooltip from "./NucleotideTooltip";
 import ControlHeader from "./ControlHeader";
 import {observe} from "mobx";
-import {Rect} from 'react-konva';
+import {Rect, Text} from 'react-konva';
 
 function stringToColor(linkColumn, highlightedLinkColumn) {
     let colorKey = (linkColumn.downstream + 1) * (linkColumn.upstream + 1);
@@ -208,6 +208,19 @@ class App extends Component {
         />
     }
 
+    renderLetters(letters){
+        let x=0
+        letters.map((letter)=>{
+            x++
+           return <Text
+            x={this.props.store.leftOffset+(x*this.props.store.pixelsPerColumn)}
+            y={this.props.store.topOffset+200}
+            text={letter}
+            width={5 * this.props.store.pixelsPerColumn}
+            height={12 || 1}/>
+        })
+    }
+
     renderLink(link) {
         return <LinkArrow
             store={this.props.store}
@@ -220,6 +233,7 @@ class App extends Component {
 
     render() {
         console.log("Start render");
+        let x=0
         return (
             <>
                 <ControlHeader store={this.props.store}/>
@@ -253,9 +267,23 @@ class App extends Component {
                               width={this.state.actualWidth+20}
                               height={this.props.store.topOffset+this.state.buttonsHeight}
                               fill="white"
+                              opacity={0.5}
                               />
                             {this.distanceSortedLinks.map((record, i) => {
                               return this.renderLink(record);
+                            })}
+
+                            {
+                            this.schematic.nucleotides.map((letter)=>{
+                                x++
+                                return(                            
+                                <Text 
+                                    text={letter}
+                                    x={x*this.props.store.pixelsPerColumn}
+                                    y={95}
+                                    width={30}
+                                    height={30}/>)
+
                             })}
                         </Layer>
                   </Stage>
