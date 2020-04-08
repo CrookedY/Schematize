@@ -280,7 +280,7 @@ class App extends Component {
                                 <Text 
                                     text={letter}
                                     x={(x-1)*this.props.store.pixelsPerColumn}
-                                    y={95}
+                                    y={this.props.store.topOffset-10}
                                     width={this.props.store.pixelsPerColumn}
                                     height={this.props.store.pixelsPerColumn}/>)
 

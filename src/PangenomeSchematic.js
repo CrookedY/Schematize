@@ -102,15 +102,11 @@ class PangenomeSchematic extends React.Component {
 
 			//remove first line
 			const splitText = text.replace(/.*/, "").substr(1)
+			const noLinebreaks = splitText.replace(/[\r\n]+/gm, '')	
+			const nucelotides=noLinebreaks.split('')
 			//split into array of nucelotides
-			const nucleotides = splitText.split("")
-			const sanitisedNucleotides = nucleotides.filter(t=>t!=='\n')
-			const startBin=this.props.store.getBeginBin()
-			const endBin=this.props.store.getEndBin()
-			const currentNucleos = nucleotides.slice(startBin-1, endBin)
-			this.nucleotides= sanitisedNucleotides
-			console.log(this.nucleotides)
-			return true
+			this.nucleotides = nucelotides
+			return
 		})
 		//work out which fasta. Get Json chuck and find chunk number (split on _, take [0], split on k take [0] find file with name with filter(?), parse int for matching)
 		//fetch fa (either promises or xhr but need to decide). Needs to be response.text. check bins match json bins. Load rest of text 
