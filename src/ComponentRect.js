@@ -75,20 +75,33 @@ class ComponentRect extends React.Component {
             }
             this_y = this.props.compressed_row_mapping[row_n];
         }
-        return row.map((cell, x)=> {
-            if(cell.length){
-                return <MatrixCell
-                key={"occupant" + row_n + x}
-                item={cell}
-                store={this.props.store}
-                pathName={this.props.pathNames[row_n]}
-                x={x_val + x * this.props.store.pixelsPerColumn}
-                y={this_y * this.props.store.pixelsPerRow + this.props.store.topOffset}
-                row_number={row_n}
-                width={width}
-                height={this.props.store.pixelsPerRow}
-                color={'pink'}
-            />}else{return null}
+      return row.map((cell, x)=> {
+        console.log("I ran")
+          if(cell.length){
+            return (
+                <>
+                <Text
+                    x={x_val + x * this.props.store.pixelsPerColumn}
+                    y={this.props.store.topOffset}
+                    text="A"
+                    align="center"
+                    width={width}
+                />
+                <MatrixCell
+                      key={"occupant" + row_n + x}
+                      item={cell}
+                      store={this.props.store}
+                      pathName={this.props.pathNames[row_n]}
+                      x={x_val + x * this.props.store.pixelsPerColumn}
+                      y={this_y * this.props.store.pixelsPerRow + this.props.store.topOffset}
+                      row_number={row_n}
+                      width={width}
+                      height={this.props.store.pixelsPerRow}
+                      color={'pink'}
+                      />
+                </>
+                      )
+            }else{return null}
             })
     };
 
@@ -148,13 +161,7 @@ class ComponentRect extends React.Component {
                     fill={this.state.color}
                     onClick={this.handleClick}>
             </Rect>
-            <Text
-          x={this.props.item.x}
-          y={this.props.store.topOffset}
-          text="ACCGGTTAACTT"
-          width={this.props.width * this.props.store.pixelsPerColumn}
-          height={this.props.height || 1}
-            />
+          
                 {this.renderMatrix()}
                 {this.renderAllConnectors()}
             </>

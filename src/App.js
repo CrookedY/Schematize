@@ -208,19 +208,7 @@ class App extends Component {
         />
     }
 
-    renderLetters(letters){
-        let x=0
-        letters.map((letter)=>{
-            x++
-           return <Text
-            x={this.props.store.leftOffset+(x*this.props.store.pixelsPerColumn)}
-            y={this.props.store.topOffset+200}
-            text={letter}
-            width={5 * this.props.store.pixelsPerColumn}
-            height={12 || 1}/>
-        })
-    }
-
+    
     renderLink(link) {
         return <LinkArrow
             store={this.props.store}
@@ -271,19 +259,6 @@ class App extends Component {
                               />
                             {this.distanceSortedLinks.map((record, i) => {
                               return this.renderLink(record);
-                            })}
-
-                            {
-                            this.schematic.nucleotides.map((letter)=>{
-                                x++
-                                return(                            
-                                <Text 
-                                    text={letter}
-                                    x={(x-1)*this.props.store.pixelsPerColumn}
-                                    y={this.props.store.topOffset-10}
-                                    width={this.props.store.pixelsPerColumn}
-                                    height={this.props.store.pixelsPerColumn}/>)
-
                             })}
                         </Layer>
                   </Stage>
