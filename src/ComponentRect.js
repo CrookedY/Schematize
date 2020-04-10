@@ -75,15 +75,15 @@ class ComponentRect extends React.Component {
             }
             this_y = this.props.compressed_row_mapping[row_n];
         }
+
       return row.map((cell, x)=> {
-        console.log("I ran")
           if(cell.length){
             return (
                 <>
                 <Text
                     x={x_val + x * this.props.store.pixelsPerColumn}
                     y={this.props.store.topOffset}
-                    text="A"
+                    text='A'
                     align="center"
                     width={width}
                 />
